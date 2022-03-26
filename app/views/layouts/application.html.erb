@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html class="bg-black">
   <head>
-    <title>RailsGithubUserStats</title>
+    <title>GitHub User Stats</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
     <%= google_webfonts_init({ google: ['Faster One']}) %>
   </head>
-
   <body class="max-w-none prose prose-invert">
     <main class="container px-5 mx-auto mt-28">
       <%= yield %>
