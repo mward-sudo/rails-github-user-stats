@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="bg-black">
   <head>
     <title>RailsGithubUserStats</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -9,10 +9,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <%= google_webfonts_init({ google: ['Faster One']}) %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="max-w-none prose prose-invert">
+    <main class="container px-5 mx-auto mt-28">
       <%= yield %>
     </main>
   </body>
