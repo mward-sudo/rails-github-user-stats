@@ -30,6 +30,26 @@ class GitHubUserStat
     }
   end
 
+  # Function to build an array showing the number of GitHub commits per week for the last 52 weeks
+  def commits_per_week
+    commits_per_week = Array.new(52, 0)
+    @repos.each { |repo|
+      repo.rels[:commits].get.data.each { |commit|
+        # Convert date to a date object
+        puts commit.commit.author.date
+        date = commit.commit.author.date.to_date
+
+        # Convert date to a week number
+        week_number = date.cweek
+
+        # Add one to the commits for the week
+        commits_per_week[week_number - 1] += 1
+      }
+    }
+
+    commits_per_week
+  end
+
   def user
     @github_user
   end

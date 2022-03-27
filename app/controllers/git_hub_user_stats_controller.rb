@@ -7,6 +7,7 @@ class GitHubUserStatsController < ApplicationController
       @repos = gitHubUser.repos
       @stars = gitHubUser.stars
       @commits_total = gitHubUser.commits_total
+      @commits_per_week = gitHubUser.commits_per_week
     end
     @error = gitHubUser.error
   end

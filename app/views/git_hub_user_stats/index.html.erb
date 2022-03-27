@@ -19,6 +19,11 @@
     <h3>Commits</h3>
     <p><%= @commits_total %></p>
   </div>
+  <%# Show @commits_per_week %>
+  <div>
+    <h3>Commits per week</h3>
+    <p><%= @commits_per_week %></p>
+  </div>
   <h3><%= @user.public_repos %> Public Repositories</h3>
   <ul>
     <% @repos.each do |repo| %>
