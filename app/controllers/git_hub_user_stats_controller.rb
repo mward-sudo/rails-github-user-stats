@@ -1,6 +1,6 @@
 class GitHubUserStatsController < ApplicationController
   def index
-    gitHubUser = GitHubUserStat.new "michaelward82"
+    gitHubUser = GitHubUserStat.new params[:username]
 
     if gitHubUser.error.nil?
       @user = gitHubUser.user
