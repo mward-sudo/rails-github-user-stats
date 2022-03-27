@@ -2,8 +2,11 @@ class GitHubUserStatsController < ApplicationController
   def index
     gitHubUser = GitHubUserStat.new "michaelward82"
 
-    @username = gitHubUser.username
-    @repos = gitHubUser.repos
-    @stars = gitHubUser.stars
+    if gitHubUser.error.nil?
+      @user = gitHubUser.user
+      @repos = gitHubUser.repos
+      @stars = gitHubUser.stars
+    end
+    @error = gitHubUser.error
   end
 end
