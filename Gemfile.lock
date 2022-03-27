@@ -121,7 +121,6 @@ GEM
     formatador (1.1.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    google-webfonts-rails (0.0.1)
     guard (2.18.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -296,7 +295,6 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
-  google-webfonts-rails
   guard
   guard-livereload (~> 2.5)
   importmap-rails
