@@ -14,6 +14,11 @@
     <h3>Stars</h3>
     <p><%= @stars %></p>
   </div>
+  <%# Show total commits %>
+  <div>
+    <h3>Commits</h3>
+    <p><%= @commits_total %></p>
+  </div>
   <h3><%= @user.public_repos %> Public Repositories</h3>
   <ul>
     <% @repos.each do |repo| %>
