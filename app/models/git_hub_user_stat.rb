@@ -25,29 +25,34 @@ class GitHubUserStat
   end
 
   def commits_total
-    @repos.sum { |repo|
-      repo.rels[:commits].get.data.count
-    }
+    # Cache for 24 hours
+    Rails.cache.fetch("#{self.user.login}/commits_total", expires_in: 24.hours) do
+      @repos.sum do |repo|
+        repo.rels[:commits].get.data.count
+      end
+    end
   end
 
   # Function to build an array showing the number of GitHub commits per week for the last 52 weeks
   def commits_per_week
-    commits_per_week = Array.new(52, 0)
-    @repos.each { |repo|
-      repo.rels[:commits].get.data.each { |commit|
-        # Convert date to a date object
-        puts commit.commit.author.date
-        date = commit.commit.author.date.to_date
+    # Cache for 24 hours
+    Rails.cache.fetch("#{self.user.login}/commits_per_week", expires_in: 24.hours) do
+      commits_per_week = Array.new(52, 0)
+      @repos.each do |repo|
+        repo.rels[:commits].get.data.each { |commit|
+          # Convert date to a date object
+          date = commit.commit.author.date.to_date
 
-        # Convert date to a week number
-        week_number = date.cweek
+          # Convert date to a week number
+          week_number = date.cweek
 
-        # Add one to the commits for the week
-        commits_per_week[week_number - 1] += 1
-      }
-    }
+          # Add one to the commits for the week
+          commits_per_week[week_number - 1] += 1
+        }
+      end
 
-    commits_per_week
+      commits_per_week
+    end
   end
 
   def user
@@ -55,7 +60,10 @@ class GitHubUserStat
   end
 
   def stars
-    @repos.sum { |repo| repo.stargazers_count }
+    # Cache for 24 hours
+    Rails.cache.fetch("#{self.user.login}/stars", expires_in: 24.hours) do
+      @repos.sum { |repo| repo.stargazers_count }
+    end
   end
 
   def error

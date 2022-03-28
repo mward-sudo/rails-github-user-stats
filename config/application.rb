@@ -18,5 +18,12 @@ module RailsGithubUserStats
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    stack = Faraday::RackBuilder.new do |builder|
+      builder.use Faraday::HttpCache, serializer: Marshal, shared_cache: false, logger: Rails.logger
+      builder.use Octokit::Response::RaiseError
+      builder.adapter Faraday.default_adapter
+    end
+    Octokit.middleware = stack
   end
 end
